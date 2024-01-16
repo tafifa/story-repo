@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import DropdownCategory from './interactions/dropdownCategory';
 import DropdownStatus from './interactions/dropdownStatus';
-// import TagInput from './tagInput';
 
 function AddStory({isOpen, setAddStoryModalStatus, updateStoryList}) {
   const closeAddStoryModal = () => {
@@ -19,8 +18,6 @@ function AddStory({isOpen, setAddStoryModalStatus, updateStoryList}) {
     status: '',
   });
 
-  // console.log(formData)
-
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({
@@ -34,8 +31,6 @@ function AddStory({isOpen, setAddStoryModalStatus, updateStoryList}) {
     updateStoryList(formData);
     setAddStoryModalStatus(false);
   };
-
-  // console.log(formData)
 
   return (
     <div className="addStory-modal w-4/5 p-5" style={{ display: isOpen ? 'block' : 'none' }}>

@@ -1,52 +1,20 @@
 /* eslint-disable react/prop-types */
-function ListStory({searchTerm, storyList}) {
-  const data = [
-    {
-      id: 1,
-      title: "The Moon that ...",
-      writes: "Rara",
-      category: "Technology",
-      tags: ["Tag1", "Tag2"],
-      status: "Publish",
-    },
-    {
-      id: 2,
-      title: "The Sun this ...",
-      writes: "Mama",
-      category: "Art",
-      tags: ["Tag1", "Tag2"],
-      status: "Draft",
-    },
-  ];
-
-  const renderTags = (tags) => (
+function ListStory({searchTerm, sortTerm, storyList}) {
+  const tagsArr = ["Tag1", "Tag2", "Tag3"];
+  const renderTags = () => (
     <td className="py-2 px-4 border-r text-center">
-      <span className="bg-gray-500 text-white px-3 py-1 rounded-full mr-1">
-        bro
-      </span>
-      {/* {tags.map((tag, index) => (
+      {tagsArr.map((tag, index) => (
         <span key={index} className="bg-gray-500 text-white px-3 py-1 rounded-full mr-1">
           {tag}
         </span>
-      ))} */}
+      ))}
     </td>
   );
-
-  const renderStatus = (status) => (
-    <td className={`py-2 px-4 border-r text-center`}>
-      <span className="bg-gray-500 text-white px-3 py-1 rounded-full mr-1">
-        bro
-      </span>
-      
-    </td>
-  );
-
-  console.log(storyList)
 
   return (
     <div className="list-story mt-5" >
       {storyList.length === 0 ? (
-        <p className="text-center text-gray-500 m-20">No stories found. Add your stories first!</p>
+        <p className="text-center text-gray-500 m-20">No stories found</p>
       ) : (
           <table className="min-w-full bg-white border border-gray-300">
             <thead>
@@ -65,8 +33,8 @@ function ListStory({searchTerm, storyList}) {
                   <td className="py-2 px-4 border-r">{item.title}</td>
                   <td className="py-2 px-4 border-r text-center">{item.writerName}</td>
                   <td className="py-2 px-4 border-r text-center">{item.category}</td>
-                  {renderTags(item.tags)}
-                  {renderStatus(item.status)}
+                  {renderTags()}
+                  <td className="py-2 px-4 border-r text-center">{item.status}</td>
                   <td className="py-2 px-4 border-r text-center">
                     <button className="bg-blue-500 text-white py-1 px-2 rounded">
                       <svg

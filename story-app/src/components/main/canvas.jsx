@@ -5,17 +5,20 @@ import FilterStory from './story/interactions/filterStory';
 
 function Canvas() {
   const [addStoryModalStatus, setAddStoryModalStatus] = useState(false);
-  const [sortModalStatus, setsortModalStatus] = useState(false);
+  const [sortModalStatus, setSortModalStatus] = useState(false);
   const [storyList, setStoryList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortTerm, setSortTerm] = useState([]);
+  const [sortTerm, setSortTerm] = useState({
+    category: '',
+    status: ''
+  });
 
   const openAddStoryModal = () => {
     setAddStoryModalStatus(true);
   }
 
   const openSortModal = () => {
-    setsortModalStatus(true);
+    setSortModalStatus(true);
   };
 
   const updateStoryList = (newStory) => {
@@ -24,6 +27,13 @@ function Canvas() {
       newStory,
     ]);
   };
+
+  const handleSearch = (e) => {
+    const { value } = e.target;
+    setSearchTerm(() => ({
+      searchTerm: value
+    }))
+  }
 
   return (
     <>
@@ -35,7 +45,7 @@ function Canvas() {
             type="text" 
             className='border border-gray-300 p-2 rounded-md ml-20 mr-5 px-10 flex-grow'
             placeholder="Search by writer's name/title story" 
-            value={""}
+            onChange={handleSearch}
           />
           <div className="inline-block text-left mr-5">
             <button
@@ -60,7 +70,7 @@ function Canvas() {
             </button>
 
             {sortModalStatus && (
-              <FilterStory setsortModalStatus={setsortModalStatus}/>
+              <FilterStory setSortModalStatus={setSortModalStatus} setSortTerm={setSortTerm}/>
             )}
           </div>
           
@@ -90,9 +100,6 @@ function Canvas() {
         <ListStory searchTerm={searchTerm} sortTerm={sortTerm} storyList={storyList}/>
       </div>
       <AddStory isOpen={addStoryModalStatus} setAddStoryModalStatus={setAddStoryModalStatus} updateStoryList={updateStoryList}/>
-      {/* untuk list story filter, nanti bakal pass parameter 
-      dari input text search lalu pass sebagai props 
-      ke list story */}
     </>
   )
 }

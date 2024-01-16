@@ -12,7 +12,6 @@ const DropdownStatus = ({setFormData}) => {
   };
 
   const handleOptionClick = (option) => {
-    console.log(option)
     setFormData((prevData) => ({
       ...prevData,
       status: option,
